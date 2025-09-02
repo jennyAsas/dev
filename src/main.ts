@@ -1,9 +1,16 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
-import { App } from './app/app';
-import { Route } from '@angular/router';
+import { provideRouter, RouterOutlet,RouterLink,RouterLinkActive,RouterLinkWithHref } from '@angular/router';
+import { routes } from './app/app.routes';
+import { Component } from '@angular/core';
 
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet,RouterLink,RouterLinkActive,RouterLinkWithHref],
+  templateUrl: './app/app.html',  
+})
+class AppComponent {}
 
-
-bootstrapApplication(App, appConfig)
-  .catch((err) => console.error(err));
+bootstrapApplication(AppComponent, {
+  providers: [provideRouter(routes)]
+});
